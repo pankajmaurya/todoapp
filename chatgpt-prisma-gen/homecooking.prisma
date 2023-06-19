@@ -1,0 +1,39 @@
+model Vegetable {
+  id          Int       @id @default(autoincrement())
+  name        String
+  quantity    Int
+  unit        String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Cereal {
+  id          Int       @id @default(autoincrement())
+  name        String
+  quantity    Int
+  unit        String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Recipe {
+  id          Int       @id @default(autoincrement())
+  title       String
+  description String?
+  ingredients RecipeIngredient[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model RecipeIngredient {
+  id          Int       @id @default(autoincrement())
+  quantity    Int
+  unit        String
+  recipeId    Int
+  vegetableId Int?
+  cerealId    Int?
+  recipe      Recipe    @relation(fields: [recipeId], references: [id])
+  vegetable   Vegetable? @relation(fields: [vegetableId], references: [id])
+  cereal      Cereal?    @relation(fields: [cerealId], references: [id])
+}
+
