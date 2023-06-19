@@ -76,19 +76,22 @@ devcontainer --workspace-folder . exec godspeed dev
 ## Use the service via curl
 
 ```bash
+#Create a user
 curl -s -X 'POST'   'http://localhost:4003/postgres/user'   -H 'accept: */*'   -H 'Content-Type: application/json'   -d '{
   "name": "Pankaj Maurya",
   "email": "foobar@gmail.com",
   "password": "string"
 }' | jq
 
-{
-  "id": 7,
-  "name": "Pankaj Maurya",
-  "email": "foobar@gmail.com",
-  "password": "string"
-}
+#output
+#{
+#  "id": 7,
+#  "name": "Pankaj Maurya",
+#  "email": "foobar@gmail.com",
+#  "password": "string"
+#}
 
+#Create a todo
 curl -s -X 'POST' \
   'http://localhost:4003/postgres/todo' \
   -H 'accept: */*' \
@@ -100,17 +103,52 @@ curl -s -X 'POST' \
   "updatedAt": "2023-06-19T16:53:29.945Z",
   "userId": 1
 }' | jq
-{
-  "id": 2,
-  "title": "update the readme with curl commands",
-  "completed": false,
-  "createdAt": "2023-06-19T16:53:29.945Z",
-  "updatedAt": "2023-06-19T16:53:29.945Z",
-  "userId": 1
-}
 
+#output
+#{
+#  "id": 2,
+#  "title": "update the readme with curl commands",
+#  "completed": false,
+#  "createdAt": "2023-06-19T16:53:29.945Z",
+#  "updatedAt": "2023-06-19T16:53:29.945Z",
+#  "userId": 1
+#}
 
+# mark todo as completed via put
+curl -X 'PUT' \
+  'http://localhost:4003/postgres/todo/1' \
+  -H 'accept: */*' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "completed": true
+}'
 
+# Note that the above does not produce output
+
+# Search a todo which is completed
+curl -X 'POST' \
+  'http://localhost:4003/postgres/todo/search' \
+  -H 'accept: */*' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "where": {
+    "completed": {
+      "equals": true
+    }
+  }
+}'
+
+#output
+#[
+#  {
+#    "id": 1,
+#    "title": "update the readme with curl commands",
+#    "completed": true,
+#    "createdAt": "2023-06-19T16:53:29.945Z",
+#    "updatedAt": "2023-06-19T16:56:57.221Z",
+#    "userId": 1
+#  }
+#]
 
 ```
 
