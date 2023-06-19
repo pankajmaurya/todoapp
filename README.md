@@ -17,9 +17,10 @@ docker compose version
 
 ## Installation
 
+```bash
 npm install -g @mindgrep/godspeed
 npm install -g @devcontainers/cli
-
+```
 
 ## Verify godspeed installation
 ```bash
