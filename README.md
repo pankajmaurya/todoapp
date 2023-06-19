@@ -150,9 +150,36 @@ curl -X 'POST' \
 #  }
 #]
 
+# Example of searching user
+curl -X 'POST' \
+  'http://localhost:4003/postgres/user/search' \
+  -H 'accept: */*' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "where": {
+    "email": {
+      "endsWith": "com"
+    }
+  }
+}'
+
 ```
+
+## Debugging
+
+You may find it instructive to connect to the database configured.The configuration lives in the docker compose file.
+
+Find values in .devcontainer/docker-compose.yaml, exec into the container and then start psql
+docker exec -it 482539da31d1 /bin/bash
+psql --user=postgres -p 5432 --dbname=userdb2
+
+I eventually configured pgadmin:
+https://www.tecmint.com/install-postgresql-and-pgadmin-in-ubuntu/
+and added a connection to localhost:5555 (note the port) with the user as postgres,  password as postgres etc and found that the table is in public
+
 
 ## Docs and pointers
 - https://docs.godspeed.systems/tutorial
 - https://docs.godspeed.systems/docs/preface
-
+- https://docs.godspeed.systems/docs/microservices/workflows
+- https://www.prisma.io/docs/concepts/components/prisma-client/crud
