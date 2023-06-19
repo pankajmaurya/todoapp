@@ -1,0 +1,11 @@
+In this schema, we have three models: User, Post, Like, and Comment.
+
+The User model represents a user in the application. It has fields for id (a unique identifier), username, email, password, posts (an array of posts created by the user), followers (an array of users who follow the user), and following (an array of users whom the user follows).
+
+The Post model represents a post on Instagram. It has fields for id (a unique identifier), imageUrl (the URL of the image in the post), caption (an optional caption for the post), createdAt (the datetime when the post was created), updatedAt (the datetime when the post was last updated), authorId (the foreign key referencing the id field of the User model), author (a relation to the User model, specifying the user who authored the post), likes (an array of likes received by the post), and comments (an array of comments posted on the post).
+
+The Like model represents a like on a post. It has fields for id (a unique identifier), postId (the foreign key referencing the id field of the Post model), userId (the foreign key referencing the id field of the User model), post (a relation to the Post model, specifying the post that was liked), and user (a relation to the User model, specifying the user who performed the like).
+
+The Comment model represents a comment on a post. It has fields for id (a unique identifier), content (the content of the comment), createdAt (the datetime when the comment was created), updatedAt (the datetime when the comment was last updated), postId (the foreign key referencing the id field of the Post model), userId (the foreign key referencing the id field of the User model), post (a relation to the Post model, specifying the post that was commented on), and user (a relation to the User model, specifying the user who posted the comment).
+
+You can further customize this schema based on your specific requirements for the Instagram clone application.
