@@ -1,0 +1,11 @@
+In this schema, we have four models: User, Tweet, Like, and Comment.
+
+The User model represents a user in the application. It has fields for id (a unique identifier), username, email, password, tweets (an array of tweets created by the user), followers (an array of users who follow the user), and following (an array of users whom the user follows).
+
+The Tweet model represents a tweet. It has fields for id (a unique identifier), content (the content of the tweet), createdAt (the datetime when the tweet was created), updatedAt (the datetime when the tweet was last updated), authorId (the foreign key referencing the id field of the User model), author (a relation to the User model, specifying the user who authored the tweet), likes (an array of likes received by the tweet), and comments (an array of comments posted on the tweet).
+
+The Like model represents a like on a tweet. It has fields for id (a unique identifier), tweetId (the foreign key referencing the id field of the Tweet model), userId (the foreign key referencing the id field of the User model), tweet (a relation to the Tweet model, specifying the tweet that was liked), and user (a relation to the User model, specifying the user who performed the like).
+
+The Comment model represents a comment on a tweet. It has fields for id (a unique identifier), content (the content of the comment), createdAt (the datetime when the comment was created), updatedAt (the datetime when the comment was last updated), tweetId (the foreign key referencing the id field of the Tweet model), userId (the foreign key referencing the id field of the User model), tweet (a relation to the Tweet model, specifying the tweet that was commented on), and user (a relation to the User model, specifying the user who posted the comment).
+
+You can further customize this schema based on your specific requirements for the Twitter clone application.
