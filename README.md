@@ -73,6 +73,47 @@ devcontainer --workspace-folder . exec godspeed build
 devcontainer --workspace-folder . exec godspeed dev
 ```
 
+## Use the service via curl
+
+```bash
+curl -s -X 'POST'   'http://localhost:4003/postgres/user'   -H 'accept: */*'   -H 'Content-Type: application/json'   -d '{
+  "name": "Pankaj Maurya",
+  "email": "foobar@gmail.com",
+  "password": "string"
+}' | jq
+
+{
+  "id": 7,
+  "name": "Pankaj Maurya",
+  "email": "foobar@gmail.com",
+  "password": "string"
+}
+
+curl -s -X 'POST' \
+  'http://localhost:4003/postgres/todo' \
+  -H 'accept: */*' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "title": "update the readme with curl commands",
+  "completed": false,
+  "createdAt": "2023-06-19T16:53:29.945Z",
+  "updatedAt": "2023-06-19T16:53:29.945Z",
+  "userId": 1
+}' | jq
+{
+  "id": 2,
+  "title": "update the readme with curl commands",
+  "completed": false,
+  "createdAt": "2023-06-19T16:53:29.945Z",
+  "updatedAt": "2023-06-19T16:53:29.945Z",
+  "userId": 1
+}
+
+
+
+
+```
+
 ## Docs and pointers
 - https://docs.godspeed.systems/tutorial
 - https://docs.godspeed.systems/docs/preface
