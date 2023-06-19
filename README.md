@@ -186,4 +186,4 @@ and added a connection to localhost:5555 (note the port) with the user as postgr
 - https://www.youtube.com/watch?v=zCLzvoSvF7E (Feature demonstration video by Ashutosh Tripathi)
 
 ## Whats next? 
-Try following this README and contents of chatgpt-prisma-gen folder to create more backends
+Try following this README and contents of [chatgpt-prisma-gen](https://github.com/pankajmaurya/todoapp/tree/main/chatgpt-prisma-gen) folder to create more backends
