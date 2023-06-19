@@ -1,44 +1,78 @@
-# devcontainer-cli
+## Pre requisites
+Install Docker (some resources I referred to for Ubuntu 20 below)
 
-devcontainer-cli is the start of a CLI to improve the experience of working with [Visual Studio Code devcontainers](https://code.visualstudio.com/docs/remote/containers)
+https://docs.docker.com/engine/install/linux-postinstall/
 
-**Status: this is a pet project that I've been experimenting with. It is not supported and you should expect bugs :-)**
+https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04
 
-**NOTE: To avoid conflicts with the [official CLI](https://github.com/devcontainers/cli) the binary for this project has been renamed to `devcontainerx`**
+__Docker installation had quirks, a reboot was needed as well__
+
+
+## Verify your docker setup
+```bash
+docker run hello-world
+
+docker compose version
+```
 
 ## Installation
 
-Head to the [latest release page](https://github.com/stuartleeks/devcontainer-cli/releases/latest) and download the archive for your platform.
+npm install -g @mindgrep/godspeed
+npm install -g @devcontainers/cli
 
-Extract `devcontainerx` from the archive and place in a folder in your `PATH`.
 
-You can also install using `homebrew` with `brew install stuartleeks/tap/devcontainer`
-
-Or if you just don't care and are happy to run random scripts from the internet:
-
+## Verify godspeed installation
 ```bash
-export OS=linux # also darwin
-export ARCH=amd64 # also 386
-wget https://raw.githubusercontent.com/stuartleeks/devcontainer-cli/main/scripts/install.sh
-chmod +x install.sh
-sudo -E ./install.sh
+godspeed help
 ```
 
-## Enabling bash completion
-
-To enable bash completion, add the following to you `~/.bashrc` file:
-
+## Creation of a project 
 ```bash
-source <(devcontainerx completion bash)
+
+$ godspeed create todoappforgithub
+                      _                                   _ 
+   __ _    ___     __| |  ___   _ __     ___    ___    __| |
+  / _` |  / _ \   / _` | / __| | '_ \   / _ \  / _ \  / _` |
+ | (_| | | (_) | | (_| | \__ \ | |_) | |  __/ |  __/ | (_| |
+  \__, |  \___/   \__,_| |___/ | .__/   \___|  \___|  \__,_|
+  |___/                        |_|                           
+projectDir:  [ '/home/pankaj/PortGodspeed/todoappforgithub' ]
+Do you need mongodb? [y/n] [default: n] 
+Do you need postgresdb? [y/n] [default: n] y
+Please enter name of the postgres database [default: test] tododb
+Please enter host port for postgres [default: 5432] 6666
+Do you need kafka? [y/n] [default: n] 
+Do you need elastisearch? [y/n] [default: n] 
+Do you need redis? [y/n] [default: n] 
+Please enter host port on which you want to run your service [default: 3000] 6000
+
 ```
 
-Or to alias `devcontainerx` (to `dcx` in this example):
+### Optionally keeping project clean
+
+Give the --noexamples option to create, check the help:
 
 ```bash
-alias dcx=devcontainerx
-complete -F __start_devcontainerx dcx
+godspeed help create
+
 ```
 
-## Docs
+## Gotchas in create and how to work around them
 
-See [the documentation](https://stuartleeks.github.io/devcontainer-cli)  on how to work with `devcontainerx`.
+If you have another project running with a conflicting port for postgres or mongo, then the docker network creation will fail causing the godspeed project creation to fail. In such a case, one can cd into the project directory and edit the .godspeed file and fix the port. Run godspeed update then.
+
+
+## Run the todo app service
+
+Once the project is created, lets bring up the dev containers and run godspeed build and dev
+
+```bash
+devcontainer --workspace-folder . up
+devcontainer --workspace-folder . exec godspeed build
+devcontainer --workspace-folder . exec godspeed dev
+```
+
+## Docs and pointers
+- https://docs.godspeed.systems/tutorial
+- https://docs.godspeed.systems/docs/preface
+
