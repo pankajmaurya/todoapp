@@ -1,0 +1,88 @@
+# ONE
+/postgres/user/:id.http.get:
+  summary: Fetch User
+  description: Fetch User from database
+  fn: com.biz.postgres.user.one
+  params:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    content:
+      application/json:
+        schema:
+          type: object
+
+# CREATE
+/postgres/user.http.post:
+  summary: Create a new User
+  description: Create User from database
+  fn: com.biz.postgres.user.create
+  body:
+    content:
+      application/json:
+        schema:
+          $ref: '#/definitions/postgres/User'
+  responses:
+    content:
+      application/json:
+        schema:
+          type: object
+
+# UPDATE
+/postgres/user/:id.http.put:
+  summary: Update a User
+  description: Update User from database
+  fn: com.biz.postgres.user.update
+  body:
+    content:
+      application/json:
+        schema:
+          $ref: '#/definitions/postgres/User'
+  params:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    content:
+      application/json:
+        schema:
+          type: object
+
+# DELETE
+/postgres/user/:id.http.delete:
+  summary: Delete a User
+  description: Delete User from database
+  fn: com.biz.postgres.user.delete
+  params:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    content:
+      application/json:
+        schema:
+          type: object
+
+# SEARCH
+/postgres/user/search.http.post:
+  summary: Fetch multiple User
+  description: Fetch multiple User from database
+  fn: com.biz.postgres.user.search
+  body:
+    content:
+      application/json:
+        schema:
+          type: object
+  responses:
+    content:
+      application/json:
+        schema:
+          type: array
+

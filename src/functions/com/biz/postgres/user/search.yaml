@@ -1,0 +1,9 @@
+summary: Fetch many User
+tasks:
+  - id: postgres_user_search
+    fn: com.gs.datastore
+    args:
+      datasource: postgres
+      data: <% inputs.body %>
+      config:
+        method: User.findMany

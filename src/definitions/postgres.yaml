@@ -1,0 +1,25 @@
+User:
+  type: object
+  properties:
+    name:
+      type: string
+    email:
+      type: string
+    password:
+      type: string
+Todo:
+  type: object
+  properties:
+    title:
+      type: string
+    completed:
+      type: boolean
+      default: false
+    createdAt:
+      type: string
+      format: date-time
+    updatedAt:
+      type: string
+      format: date-time
+    userId:
+      type: integer

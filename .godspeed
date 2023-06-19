@@ -1,0 +1,1 @@
+{"projectName":"todoappclean","mongodb":false,"postgresql":true,"postgresDbName":"tododb","kafka":false,"elasticsearch":false,"redis":false,"svcPort":4003,"postgresDbPort":5556}

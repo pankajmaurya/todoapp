@@ -1,0 +1,88 @@
+# ONE
+/postgres/todo/:id.http.get:
+  summary: Fetch Todo
+  description: Fetch Todo from database
+  fn: com.biz.postgres.todo.one
+  params:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    content:
+      application/json:
+        schema:
+          type: object
+
+# CREATE
+/postgres/todo.http.post:
+  summary: Create a new Todo
+  description: Create Todo from database
+  fn: com.biz.postgres.todo.create
+  body:
+    content:
+      application/json:
+        schema:
+          $ref: '#/definitions/postgres/Todo'
+  responses:
+    content:
+      application/json:
+        schema:
+          type: object
+
+# UPDATE
+/postgres/todo/:id.http.put:
+  summary: Update a Todo
+  description: Update Todo from database
+  fn: com.biz.postgres.todo.update
+  body:
+    content:
+      application/json:
+        schema:
+          $ref: '#/definitions/postgres/Todo'
+  params:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    content:
+      application/json:
+        schema:
+          type: object
+
+# DELETE
+/postgres/todo/:id.http.delete:
+  summary: Delete a Todo
+  description: Delete Todo from database
+  fn: com.biz.postgres.todo.delete
+  params:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    content:
+      application/json:
+        schema:
+          type: object
+
+# SEARCH
+/postgres/todo/search.http.post:
+  summary: Fetch multiple Todo
+  description: Fetch multiple Todo from database
+  fn: com.biz.postgres.todo.search
+  body:
+    content:
+      application/json:
+        schema:
+          type: object
+  responses:
+    content:
+      application/json:
+        schema:
+          type: array
+

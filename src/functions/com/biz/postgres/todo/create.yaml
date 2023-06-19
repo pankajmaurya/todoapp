@@ -1,0 +1,10 @@
+summary: Create Todo
+tasks:
+  - id: postgres_todo_create
+    fn: com.gs.datastore
+    args:
+      datasource: postgres
+      data:
+        data: <% inputs.body %>
+      config:
+        method: Todo.create
