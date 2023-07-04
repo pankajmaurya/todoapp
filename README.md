@@ -69,7 +69,7 @@ Once the project is created, lets bring up the dev containers and run godspeed b
 
 ```bash
 devcontainer --workspace-folder . up
-devcontainer --workspace-folder . exec godspeed build
+devcontainer --workspace-folder . exec godspeed build #on the mac I ran [devcontainer exec --workspace-folder . godspeed build]
 devcontainer --workspace-folder . exec godspeed dev
 ```
 
